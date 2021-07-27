@@ -4,6 +4,7 @@ import kind from '@enact/core/kind';
 import {Panel, Header} from '@enact/moonstone/Panels';
 import PropTypes from 'prop-types';
 import React from 'react';
+import MediaOverlay from '@enact/moonstone/MediaOverlay';
 
 const MainPanel = kind({
 	name: 'MainPanel',
@@ -30,8 +31,13 @@ const MainPanel = kind({
 			<Item onClick={onClick1}>디스플레이</Item>
 			<Item onClick={onClick2}>사운드</Item>
 			<Item onClick={onClick3}>사용자</Item>
+
+      <MediaOverlay>
+          <source src='http://media.w3.org/2010/05/sintel/trailer.mp4'/>
+      </MediaOverlay>
 		</Panel>
 	)
 });
 
 export default MainPanel;
+
