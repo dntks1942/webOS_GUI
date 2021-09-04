@@ -15,6 +15,31 @@ import Device_3 from '../views/Device_3';
 import Login from '../views/login';
 import Identity from '../views/Identity.json'
 import { Component } from 'react';
+import LS2Request from '@enact/webos/LS2Request';
+
+var webOSBridge = new LS2Request();
+
+const creatToast = () => {
+	var parms = {
+	   "message": "This is Toast Alarm"
+	}
+ 
+	var lsRequest = {
+	   "service":"luna://com.webos.notification",
+	   "method":"createToast",
+	   "parameters": parms,
+	   "onSuccess": onToastSuccess,
+	   "onFailure": onToastFailure
+	};
+	webOSBridge.send(lsRequest);   
+ }
+ const onToastSuccess = (msg) => {
+	console.log(msg);
+ }
+ 
+ const onToastFailure = (msg) => {
+	console.log(msg);
+ }
 
 function getQueryStringObject() {
     var a = window.location.search.substr(1).split('&');
@@ -68,8 +93,9 @@ class App extends React.Component {
 			this.setState({index: 1})
 		}
 		else{
-			this.setState({index: 0})
-			window.alert("아이디, 혹은 비밀번호가 틀렸습니다.");
+			creatToast();
+			this.setState({index: 0});
+			
 		}
 	}
 

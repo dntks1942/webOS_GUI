@@ -6,10 +6,35 @@ import PropTypes from 'prop-types';
 import Button from '@enact/moonstone/Button';
 import BodyText from '@enact/moonstone/BodyText';
 import Input from '@enact/moonstone/Input';
+import LS2Request from '@enact/webos/LS2Request';
+
+var webOSBridge = new LS2Request();
+
+const getclistSuccess = (msg) => {
+    console.log(msg);
+}
+
+const getclistFailure = (msg) => {
+    console.log(msg);
+}
+
+const clist = () => {
+    var parms = {
+        "id": "camera1"
+    }
+    var lsRequest = {
+        "service":"luna://com.webos.service.camera2",
+        "method":"getCameraList",
+        "parameters": parms,
+        "onSuccess": getclistSuccess,
+        "onFailure": getclistFailure
+    };
+    webOSBridge.send(lsRequest);
+}
 
 const Login = kind({
 	name: 'Login',
-
+	
 	propTypes: {
 		/**
 		 * A function to run on click event
@@ -45,6 +70,10 @@ const Login = kind({
 				<div>
 					<Button onClick={onClick}>로그인</Button>
 				</div>
+
+          <div>
+          <Button onClick={clist}>Click me</Button>
+        </div>
 			</form>
 		</Panel>
 	)

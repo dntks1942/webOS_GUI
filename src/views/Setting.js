@@ -4,10 +4,9 @@ import kind from '@enact/core/kind';
 import {Panel, Header} from '@enact/moonstone/Panels';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Webcam from "react-webcam";
 
 
-const WebcamComponent = () => <Webcam />;
+
 
 const Setting = kind({
 	name: 'Setting',
@@ -34,7 +33,7 @@ const Setting = kind({
 			<Item onClick={onClick1}>디스플레이</Item>
 			<Item onClick={onClick2}>사운드</Item>
 			    <Item onClick={onClick3}>사용자</Item>
-          <Webcam />
+
 		</Panel>
 	)
 });
